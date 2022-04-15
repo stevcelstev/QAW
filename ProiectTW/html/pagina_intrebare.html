@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Stativa Vladut-Alexandru">
-    <link rel="stylesheet" href="../css/stiluri.css?v=1.0" type="text/css">
+    <link rel="stylesheet" href="../css/stiluri.css?v=1.1" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <title>Pagina intrebare</title>
@@ -65,13 +65,16 @@
                 .then(data => {
                     console.log(data.comms.array)
                     document.querySelector("#intrebare").innerText = data.question.string
-                    var mainContainer = document.getElementById("principal");
-                    for (var i = 0; i < data.comms.array.length; i++) 
+                    var rasp = "rasp"
+                    for (var i = 1; i < 4; i++)
                     {
-                        var div = document.createElement("div");
-                        div.innerHTML = data.comms.array[i].string;
-                        mainContainer.appendChild(div);
-                    }
+                        var number = (i).toString()
+                        var stringul = rasp + number
+                        var mainContainer = document.getElementById(stringul); 
+                        var p = document.createElement("p");
+                        p.innerHTML = data.comms.array[i - 1].string;
+                        mainContainer.appendChild(p);
+                    }                    
                 })
         </script>
 
@@ -94,6 +97,78 @@
                     </div>
                     <div class="butoane">
                         <a href="">Răspunde</a>
+                    </div>     
+                </div>
+            </div>  
+        </div>
+
+        <div>
+            <div>
+                <div class = "comsus">
+                    <div class="imgcom">
+                        <img src="../images/profil.png" alt="Profil" width="32" height="32">
+                        <p>User</p>
+                    </div>
+                    <div id="rasp1">
+                        <!-- <p id="intrebare">Intrebare</p> -->
+                    </div>
+                </div>
+                
+                <div class="butjos">
+                    <p>12 upvoturi</p>
+                    <div class="butoane">
+                        <a href="">Apreciază</a>
+                    </div>
+                    <div class="butoane">
+                        <a href="">Depreciază</a>
+                    </div>     
+                </div>
+            </div>  
+        </div>
+
+        <div>
+            <div>
+                <div class = "comsus">
+                    <div class="imgcom">
+                        <img src="../images/profil.png" alt="Profil" width="32" height="32">
+                        <p>User</p>
+                    </div>
+                    <div id="rasp2">
+                        <!-- <p id="intrebare">Intrebare</p> -->
+                    </div>
+                </div>
+                
+                <div class="butjos">
+                    <p>8 upvoturi</p>
+                    <div class="butoane">
+                        <a href="">Apreciază</a>
+                    </div>
+                    <div class="butoane">
+                        <a href="">Depreciază</a>
+                    </div>     
+                </div>
+            </div>  
+        </div>
+
+        <div>
+            <div>
+                <div class = "comsus">
+                    <div class="imgcom">
+                        <img src="../images/profil.png" alt="Profil" width="32" height="32">
+                        <p>User</p>
+                    </div>
+                    <div id="rasp3">
+                        <!-- <p id="intrebare">Intrebare</p> -->
+                    </div>
+                </div>
+                
+                <div class="butjos">
+                    <p>3 upvoturi</p>
+                    <div class="butoane">
+                        <a href="">Apreciază</a>
+                    </div>
+                    <div class="butoane">
+                        <a href="">Depreciază</a>
                     </div>     
                 </div>
             </div>  
