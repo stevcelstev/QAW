@@ -39,9 +39,9 @@ function load_nav()
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="../public/profil">
                 <img src="images/profil.png" alt="Profil" height="32" width="32">
-            </a>                
+            </a>             
         </li>
     </ul>
 </nav>
@@ -59,19 +59,32 @@ function load_main()
                 <img class="imgprof" src="images/profil.png" alt="Profil" height="100" width="100">
             </div>         
             <div class="textdreapta">
+                <?php 
+                    $profil = new Profil();
+                    $profil->display_userinfo(1);
+                    $profil->user_password(1);
+                ?>
                 <p class = "textprofil">
-                    
+                    <?php 
+                        $qaw = new qaw;
+                        $userData = $qaw->getUserByID(1);
+                        echo $userData[0]['name'];
+                    ?>
                 </p>
-                <form action="#">
+                <form action="#" method = "post">
                     <input type="password" name = "npass1" placeholder="new password" required>
                     <input type="password" name = "npass2" placeholder="retype password" required>
                     <input type="submit" name = "newpass" value="Modifica parola">
                 </form>
                 <p class="textprofil">
-                    email
+                    <?php 
+                        echo $userData[0]['email'];
+                    ?>
                 </p>
                 <p class="textprofil">
-                    telefon
+                    <?php 
+                        echo $userData[0]['phone'];
+                    ?>
                 </p>
                 <div class="divsubtext">
                     <p class="undertext">Badges</p>

@@ -9,33 +9,20 @@ class Profil extends Controller
         $this->view('profil/profil_layout', ['name' => $user->name]);
     }
 
-    function change_pass()
+    function display_userinfo($id)
     {
+        $qaw = $this->model('Qaw');
+        $qaw->getUserByID($id);
+    }
+
+    function user_password($id)
+    {
+        $qaw = $this->model('Qaw');
         if(isset($_POST['newpass']))
         {
-            // $user = $_SESSION['username'];
-            $user = 'Alex';
-            $pass1 = $_POST['npass1'];
-            $pass2 = $_POST['npass2'];
-
-            if ($pass1 != $pass2)
-            {
-                echo("Parolele trebuie sa fie identice. Incercati din nou.");
-                return ;
-            }
-
-            if (trim($pass1) == '' || trim($pass2) == '')
-            {
-                echo("Nu trebuie lasate spatii goale.");
-                return ;
-            }
-
-            $mar = new ProfilModel();
-            $usname = $mar->pass_credentials($user, $pass1);
-            // if (count($usname) > 0)
-            // {
-            //     $mar->schimba_parola($user,$pass1);
-            // }
+            $npass1 = $_POST['npass1'];
+            $npass2 = $_POST['npass2'];
+            $qaw->changePassword($id, $npass1, $npass2);
         }
     }
 }

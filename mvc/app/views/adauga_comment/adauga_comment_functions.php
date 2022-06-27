@@ -41,7 +41,7 @@ function load_nav()
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="../public/profil">
                 <img src="images/profil.png" alt="Profil" height="32" width="32">
             </a>                
         </li>
@@ -74,18 +74,30 @@ function load_main()
             })
     </script>
 
+
+    <?php 
+            $comentariu = new Comment;
+            $comentariu->display_comment(1);
+        ?>
     <div>
         <div class="intreb">
-            <p id="intrebare">Intrebare</p>
+            <p id="intrebare">
+                <?php 
+                    $qaw = new qaw;
+                    $qinfo = $qaw->getQuestionByID(1);
+                    // $qaw->insertComm(2, 1, 'Test, test, dar nu testez');
+                    echo $qinfo[0]['text'];
+                ?>
+            </p>
         </div>
-        <form action="#" class="com">
+        <form action="#" class="com" method = "post">
             <div>
                 <!-- Am sa adaug id-uri si nume pentru form si chestiile din el, dar deocamdata las asa -->
-                <textarea cols="30" rows="10" maxlength="2048" required>
+                <textarea name = "textcomm" cols="30" rows="10" maxlength="2048" required>
                 </textarea>
             </div>
             <div>
-                <input type="submit">
+                <input type="submit" name = "subcomm">
             </div>   
         </form>
     </div>       

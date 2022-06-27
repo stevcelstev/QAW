@@ -41,7 +41,7 @@ function load_nav()
             </a>
         </li>
         <li>
-            <a href="profil.html">
+            <a href="../public/profil">
                 <img src="images/profil.png" alt="Profil" height="32" width="32">
             </a>            
         </li>
@@ -69,7 +69,13 @@ function load_main()
 <!-- Aici am folosit id (pe langa clasa) pentru a putea lua raspunsurile din JSON -->
     <!-- Clasa "main" o folosesc pentru stilizare -->
     <main class="main" id="principal">
-        <script>
+        <?php 
+            // require '../../controllers/question.php';
+            $intrebare = new Question;
+            $intrebare->display_question(1);
+            // $intrebare->update_score(1);
+        ?>
+        <!-- <script>
             fetch("../intrebare.json")
                 .then(response => response.json())
                 .then(data => {
@@ -86,21 +92,43 @@ function load_main()
                         mainContainer.appendChild(p);
                     }                    
                 })
-        </script>
+        </script> -->
 
         <div>
             <div>
                 <div class = "comsus">
                     <div>
-                        <img src="images/upvote.png" alt="Upvote" width="24" height="24">
-                        <img src="images/downvote.png" alt="Downvote" width="24" height="24">
+                        <form action="#" method = 'post'>
+                            <input type="image" src="images/upvote.png" name = "upvote" alt="Upvote" width="24" height="24">
+                            <input type="image" src="images/downvote.png" name = "downvote" alt="Downvote" width="24" height="24">
+                        </form>
+                        <!-- <img src="images/upvote.png" alt="Upvote" width="24" height="24">
+                        <img src="images/downvote.png" alt="Downvote" width="24" height="24"> -->
+                    </div>
+                    <div>
+                        <?php
+                            $qaw = new qaw;
+                            $qinfo = $qaw->getQuestionByID(1); 
+                            echo $qinfo[0]['score'];
+                        ?>
                     </div>
                     <div class="imgcom">
                         <img src="images/profil.png" alt="Profil" width="32" height="32">
-                        <p>Agamemnon</p>
+                        <p>
+                            <?php 
+                                 
+                                 $userData = $qaw->getUserByID(1);
+                                 echo $userData[0]['name'];
+                            ?>
+                        </p>
                     </div>
                     <div>
-                        <p id="intrebare">Intrebare</p>
+                        <p id="intrebare">
+                            <?php
+                                $cinfo = $qaw->displayComments(1);
+                                echo $qinfo[0]['text'];
+                            ?>
+                        </p>
                     </div>
                 </div>
                 
@@ -110,13 +138,17 @@ function load_main()
                         <a href="">Raportează</a>
                     </div>
                     <div class="butoane">
-                        <a href="">Răspunde</a>
+                        <a href="../public/comment">Răspunde</a>
                     </div>     
                 </div>
             </div>  
         </div>
 
-        <div>
+        <?php 
+        $n = sizeof($cinfo);
+        for ($i = 0; $i < $n; $i++)
+        {
+            echo '<div>
             <div>
                 <div class = "comsus">
                     <div>
@@ -125,11 +157,14 @@ function load_main()
                     </div>
                     <div class="imgcom">
                         <img src="images/profil.png" alt="Profil" width="32" height="32">
-                        <p>User</p>
+                        <p>';
+                                echo $userData[0]['name'];
+                       echo '</p>
                     </div>
-                    <div id="rasp1">
-                        <!-- <p id="intrebare">Intrebare</p> -->
-                    </div>
+                    <div id="rasp1">';
+                        echo $cinfo[$i]['text'];
+            echo 
+                    '</div>
                 </div>
                 
                 <div class="butjos">
@@ -145,71 +180,11 @@ function load_main()
                     </div>
                 </div>
             </div>  
-        </div>
+        </div>';
+        }
 
-        <div>
-            <div>
-                <div class = "comsus">
-                    <div>
-                        <img src="images/upvote.png" alt="Upvote" width="24" height="24">
-                        <img src="images/downvote.png" alt="Downvote" width="24" height="24">
-                    </div>
-                    <div class="imgcom">
-                        <img src="images/profil.png" alt="Profil" width="32" height="32">
-                        <p>User</p>
-                    </div>
-                    <div id="rasp2">
-                        <!-- <p id="intrebare">Intrebare</p> -->
-                    </div>
-                </div>
-                
-                <div class="butjos">
-                    <p>8 upvoturi</p>
-                    <!-- <div class="butoane">
-                        <a href="">Apreciază</a>
-                    </div>
-                    <div class="butoane">
-                        <a href="">Depreciază</a>
-                    </div>      -->
-                    <div class="butoane">
-                        <a href="">Raportează</a>
-                    </div>
-                </div>
-            </div>  
-        </div>
-
-        <div>
-            <div>
-                <div class = "comsus">
-                    <div>
-                        <img src="images/upvote.png" alt="Upvote" width="24" height="24">
-                        <img src="images/downvote.png" alt="Downvote" width="24" height="24">
-                    </div>
-                    <div class="imgcom">
-                        <img src="images/profil.png" alt="Profil" width="32" height="32">
-                        <p>User</p>
-                    </div>
-                    <div id="rasp3">
-                        <!-- <p id="intrebare">Intrebare</p> -->
-                    </div>
-                </div>
-                
-                <div class="butjos">
-                    <p>3 upvoturi</p>
-                    <!-- <div class="butoane">
-                        <a href="">Apreciază</a>
-                    </div>
-                    <div class="butoane">
-                        <a href="">Depreciază</a>
-                    </div>      -->
-                    <div class="butoane">
-                        <a href="">Raportează</a>
-                    </div>
-                </div>
-            </div>  
-        </div>
+        ?>
         <!-- Aici se insereaza divurile cu comentariile la intrebare prin intermediul scriptului JS de mai sus facut de mine
         Deocamdata las asa, daca nu cumva casesc o solutie, dar in principiu comentariile vor avea o structura destul de asemanatoare cu cea a intrebarii -->
-    </main>
-
+    </main>   
 <?php } ?>
