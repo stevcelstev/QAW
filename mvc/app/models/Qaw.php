@@ -88,4 +88,11 @@ class qaw
         return $stmt->fetchAll(); 
     }
 
+    function displayUsername($id)
+    {
+        $stmt = $this->conn->prepare("SELECT u.name FROM comment AS c JOIN question AS q ON c.question_id = q.id JOIN user AS u ON u.id = q.user_id WHERE q.id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
+
 }

@@ -146,6 +146,7 @@ function load_main()
 
         <?php 
         $n = sizeof($cinfo);
+        $u = $qaw->displayUsername(1);
         for ($i = 0; $i < $n; $i++)
         {
             echo '<div>
@@ -158,7 +159,8 @@ function load_main()
                     <div class="imgcom">
                         <img src="images/profil.png" alt="Profil" width="32" height="32">
                         <p>';
-                                echo $userData[0]['name'];
+                                // echo $userData[0]['name'];
+                                echo $u[$i]['name'];
                        echo '</p>
                     </div>
                     <div id="rasp1">';
